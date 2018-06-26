@@ -233,9 +233,18 @@ public class MQTTOperations implements MqttCallback {
                         result = normal.random(amount);
 
                         break;
-                case "exponential":
+                case "normalEdgent":
+                                       
+                    for (int i = 0; i < amount; i++) {
+                        double newTemp = random.nextGaussian();
+                        while(newTemp<0)
+                           newTemp = random.nextGaussian();
                         
-                        break;
+                        result[i] = newTemp;
+                    }
+                                  
+                    break;
+                        
                 case "normalTemperature":
                     
             

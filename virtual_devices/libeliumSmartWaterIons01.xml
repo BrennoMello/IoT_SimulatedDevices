@@ -4,7 +4,7 @@
     <sensors>
             <sensor name="NitriteNO2Sensor">
             <values>integer</values>
-            <distribution>normalTemperature</distribution>
+            <distribution>normalEdgent</distribution>
     </sensor>
 
     </sensors>
