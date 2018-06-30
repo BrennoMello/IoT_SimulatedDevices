@@ -26,6 +26,10 @@ public class MQTTOperations implements MqttCallback {
 	private MqttClient publisher;
 	private List<VirtualDevice> devices;
 	Hashtable flowStatus;
+        
+        //POG
+        private int qtDAta;
+        private int qtData2;
 
 	public MQTTOperations(String brokerUrl, String brokerPort, String serverId,
 			String username, String password, List<VirtualDevice> devices) {
@@ -236,11 +240,22 @@ public class MQTTOperations implements MqttCallback {
                 case "normalEdgent":
                                        
                     for (int i = 0; i < amount; i++) {
-                        double newTemp = random.nextGaussian();
+                        /*double newTemp = random.nextGaussian();
                         while(newTemp<0)
                            newTemp = random.nextGaussian();
-                        
-                        result[i] = newTemp;
+                        */
+                        this.qtDAta++;
+                        if(this.qtDAta>=10){
+                            this.qtData2++;
+                            if(this.qtData2>5){
+                                this.qtData2 = 0;
+                                this.qtDAta = 0;
+                            }
+                                
+                            result[i] = 10;
+                            break;
+                        }
+                        result[i] = 1;
                     }
                                   
                     break;
