@@ -26,6 +26,10 @@ public class MQTTOperations implements MqttCallback {
 	private MqttClient publisher;
 	private List<VirtualDevice> devices;
 	Hashtable flowStatus;
+        
+        //POG
+        private int qtDAta;
+        private int qtData2;
 
 	public MQTTOperations(String brokerUrl, String brokerPort, String serverId,
 			String username, String password, List<VirtualDevice> devices) {
@@ -239,12 +243,9 @@ public class MQTTOperations implements MqttCallback {
                         double newTemp = random.nextGaussian();
                         while(newTemp<0)
                            newTemp = random.nextGaussian();
-                        
-                        result[i] = newTemp;
-                    }
-                                  
-                    break;
-                        
+                    }  
+                     
+                        break;
                 case "normalTemperature":
                     
             
@@ -328,6 +329,7 @@ public class MQTTOperations implements MqttCallback {
 		header.put("NAME", sensor.getDevice().getName());
 		body.put(sensor.getName(), results.toArray());
 		body.put("FLOW", flow);
+                body.put("TimeStamp", System.currentTimeMillis());
 		response.put("METHOD", "FLOW");
 		
 		response.put("CODE", "POST");
