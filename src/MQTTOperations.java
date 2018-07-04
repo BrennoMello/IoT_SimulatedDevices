@@ -343,6 +343,7 @@ public class MQTTOperations implements MqttCallback {
 		header.put("NAME", sensor.getDevice().getName());
 		body.put(sensor.getName(), results.toArray());
 		body.put("FLOW", flow);
+                body.put("TimeStamp", System.currentTimeMillis());
 		response.put("METHOD", "FLOW");
 		
 		response.put("CODE", "POST");
