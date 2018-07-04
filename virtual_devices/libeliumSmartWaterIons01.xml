@@ -2,9 +2,9 @@
 <device name="libeliumSmartWaterIons01">
    
     <sensors>
-        <sensor name="NitriteNO2Sensor">
-        <values>integer</values>
-        <distribution>normalTemperature</distribution>
+            <sensor name="NitriteNO2Sensor">
+            <values>integer</values>
+            <distribution>normalEdgent</distribution>
     </sensor>
 
     </sensors>
