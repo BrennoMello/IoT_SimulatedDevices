@@ -245,14 +245,14 @@ public class MQTTOperations implements MqttCallback {
                            newTemp = random.nextGaussian();
                         */
                         this.qtDAta++;
-                        if(this.qtDAta>=10){
+                        if(this.qtDAta>=30){
                             this.qtData2++;
-                            if(this.qtData2>5){
+                            if(this.qtData2>15){
                                 this.qtData2 = 0;
                                 this.qtDAta = 0;
                             }
                                 
-                            result[i] = 10;
+                            result[i] = 1;
                             break;
                         }
                         result[i] = 1;
