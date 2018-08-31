@@ -15,9 +15,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.eclipse.paho</groupId>
-			<artifactId>mqtt-client</artifactId>
-			<version>0.4.0</version>
+                    <groupId>org.eclipse.paho</groupId>
+                    <artifactId>mqtt-client</artifactId>
+                    <version>0.4.0</version>
 		</dependency>
 		<dependency>
                     <groupId>org.json</groupId>
@@ -28,6 +28,11 @@
                     <groupId>net.sourceforge.jdistlib</groupId>
                     <artifactId>jdistlib</artifactId>
                     <version>0.4.5</version>
+                </dependency>
+                <dependency>
+                    <groupId>nz.ac.waikato.cms.moa</groupId>
+                    <artifactId>moa</artifactId>
+                    <version>2014.04</version>
                 </dependency>
 	</dependencies>
 

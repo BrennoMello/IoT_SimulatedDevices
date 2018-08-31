@@ -2,6 +2,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
+import moa.streams.ConceptDriftStream;
 import net.sourceforge.jdistlib.Normal;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -26,6 +27,7 @@ public class MQTTOperations implements MqttCallback {
 	private MqttClient publisher;
 	private List<VirtualDevice> devices;
 	Hashtable flowStatus;
+        private ConceptDriftStream conceptDrifStream;
         
         //POG
         private int qtDAta;
@@ -35,6 +37,8 @@ public class MQTTOperations implements MqttCallback {
 			String username, String password, List<VirtualDevice> devices) {
 		MqttConnectOptions connOpt = new MqttConnectOptions();
 		
+                this.conceptDrifStream = new ConceptDriftStream();
+                conceptDrifStream.prepareForUse();
 		this.brokerUrl = brokerUrl;
 		this.brokerPort = brokerPort;
 		this.serverId = serverId;
@@ -293,6 +297,15 @@ public class MQTTOperations implements MqttCallback {
            return result;            
         }
                 
+        private double[] simulatingConceptDrift(String function, int amount){
+            
+            for (int i = 0; i < amount; i++) {
+                        
+                       
+            }
+            
+            return null;
+        }
         
         
         
