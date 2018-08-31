@@ -240,10 +240,10 @@ public class MQTTOperations implements MqttCallback {
                 case "normalEdgent":
                                        
                     for (int i = 0; i < amount; i++) {
-                        /*double newTemp = random.nextGaussian();
+                        double newTemp = random.nextGaussian();
                         while(newTemp<0)
                            newTemp = random.nextGaussian();
-                        */
+                        
                         this.qtDAta++;
                         if(this.qtDAta>=30){
                             this.qtData2++;
