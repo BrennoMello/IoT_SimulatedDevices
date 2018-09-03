@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 import moa.streams.ConceptDriftStream;
+import moa.streams.generators.RandomRBFGenerator;
 import net.sourceforge.jdistlib.Normal;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -28,6 +29,7 @@ public class MQTTOperations implements MqttCallback {
 	private List<VirtualDevice> devices;
 	Hashtable flowStatus;
         private ConceptDriftStream conceptDrifStream;
+        private RandomRBFGenerator stream = new RandomRBFGenerator();
         
         //POG
         private int qtDAta;
@@ -39,6 +41,10 @@ public class MQTTOperations implements MqttCallback {
 		
                 this.conceptDrifStream = new ConceptDriftStream();
                 conceptDrifStream.prepareForUse();
+                
+                this.stream = new RandomRBFGenerator();
+                stream.prepareForUse();
+                
 		this.brokerUrl = brokerUrl;
 		this.brokerPort = brokerPort;
 		this.serverId = serverId;
@@ -297,14 +303,14 @@ public class MQTTOperations implements MqttCallback {
            return result;            
         }
                 
-        private double[] simulatingConceptDrift(String function, int amount){
+        private double[] simulatingConceptDrift(int amount){
+            double result[] = new double[amount];
             
             for (int i = 0; i < amount; i++) {
-                        
-                       
+                 result[i] =  this.stream.nextInstance().getData().classValue();
             }
             
-            return null;
+            return result;
         }
         
         
@@ -332,7 +338,7 @@ public class MQTTOperations implements MqttCallback {
 		int collect = confJSON.getInt("collect");
 		
                 int amount = publish/collect;
-                double[] values = statisticalDistribution(statiscDistribution, amount);               
+                double[] values = simulatingConceptDrift(amount);               
                 
                 while (publish > 0) {
 			//int i = randomGenerator.nextInt(sensor.getValues().size());
