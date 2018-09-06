@@ -7,12 +7,22 @@ public class VirtualSensor {
         private String statisticalDistribution;
         private List<Object> values;
 	private VirtualDevice device;
-	
+	private String fileSytheticDataSet;
+        
 	public VirtualSensor(String name, String typeValue, List<Object> values, VirtualDevice device) {
 		this.name = name;
 		this.typeValue = typeValue;
 		this.values = values;
 		this.device = device;
+	}
+        
+        public VirtualSensor(String name, String typeValue, VirtualDevice device, String statisticalDistribution, String fileSytheticDataSet) {
+		this.name = name;
+		this.typeValue = typeValue;
+		this.values = values;
+		this.device = device;
+                this.fileSytheticDataSet = fileSytheticDataSet;
+                this.statisticalDistribution = statisticalDistribution;
 	}
 	
 	public VirtualSensor(String name, String typeValue, VirtualDevice device, String statisticalDistribution) {
@@ -62,4 +72,18 @@ public class VirtualSensor {
         public void setStatisticalDistribution(String statisticalDistribution) {
             this.statisticalDistribution = statisticalDistribution;
         }
+
+    /**
+     * @return the fileSytheticDataSet
+     */
+    public String getFileSytheticDataSet() {
+        return fileSytheticDataSet;
+    }
+
+    /**
+     * @param fileSytheticDataSet the fileSytheticDataSet to set
+     */
+    public void setFileSytheticDataSet(String fileSytheticDataSet) {
+        this.fileSytheticDataSet = fileSytheticDataSet;
+    }
 }

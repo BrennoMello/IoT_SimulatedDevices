@@ -108,13 +108,15 @@ public class Controller {
                                 Element eSensor = (Element) sensorList.item(i);
 				Element valuesElement = (Element) eSensor.getElementsByTagName("values").item(0);
                                 Element distributionElement = (Element) eSensor.getElementsByTagName("distribution").item(0);
-				
+                                Element sytheticDataSet = (Element) eSensor.getElementsByTagName("sytheticDataSet").item(0);
+                                
                                 String typeValue = valuesElement.getTextContent();
                                 String distribution =  distributionElement.getTextContent();
 				
                                 String name = eSensor.getAttribute("name");
-				
-				VirtualSensor virtualSensor = new VirtualSensor(name, typeValue, device, distribution);
+				String fileSytheticDataSet = sytheticDataSet.getTextContent();
+                                        
+				VirtualSensor virtualSensor = new VirtualSensor(name, typeValue, device, distribution, fileSytheticDataSet);
                                 System.out.println("Virtual Sensor Name => "+virtualSensor.getName() + " --------------");
                                 System.out.println("Virtual Sensor Type Value => "+virtualSensor.getTypeValue());
                                 System.out.println("Virtual Sensor Distribution => "+virtualSensor.getStatisticalDistribution());

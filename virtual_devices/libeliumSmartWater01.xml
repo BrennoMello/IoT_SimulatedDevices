@@ -4,31 +4,37 @@
         <sensor name="TemperatureSensorPt-1000">
             <values>integer</values>
             <distribution>normalTemperature</distribution>
+	    <sytheticDataSet>/home/brenno/Documentos/massiveOnlineAnalysis-2018.06.0/example1.arff</sytheticDataSet>
         </sensor>
 
         <sensor name="ConductivitySensor">
             <values>integer</values>
             <distribution>normalTemperature</distribution>
+	    <sytheticDataSet>/home/brenno/Documentos/massiveOnlineAnalysis-2018.06.0/example1.arff</sytheticDataSet>
         </sensor>
 
          <sensor name="DissolvedOxygenSensor">
             <values>integer</values>
             <distribution>normalTemperature</distribution>
+	    <sytheticDataSet>/home/brenno/Documentos/massiveOnlineAnalysis-2018.06.0/example1.arff</sytheticDataSet>
         </sensor>
 
         <sensor name="pHSensor">
             <values>integer</values>
             <distribution>normalTemperature</distribution>
+	    <sytheticDataSet>/home/brenno/Documentos/massiveOnlineAnalysis-2018.06.0/example1.arff</sytheticDataSet>
         </sensor>
         
         <sensor name="OxidationReductionPotentialSensor">
             <values>integer</values>
             <distribution>normalTemperature</distribution>
+	    <sytheticDataSet>/home/brenno/Documentos/massiveOnlineAnalysis-2018.06.0/example1.arff</sytheticDataSet>
         </sensor>
 
         <sensor name="TurbiditySensor">
             <values>integer</values>
             <distribution>normalTemperature</distribution>
+	    <sytheticDataSet>/home/brenno/Documentos/massiveOnlineAnalysis-2018.06.0/example1.arff</sytheticDataSet>
         </sensor>
 
     </sensors>

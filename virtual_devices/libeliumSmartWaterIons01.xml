@@ -5,6 +5,7 @@
             <sensor name="NitriteNO2Sensor">
             <values>integer</values>
             <distribution>normalEdgent</distribution>
+	    <sytheticDataSet>/home/brenno/Documentos/massiveOnlineAnalysis-2018.06.0/example1.arff</sytheticDataSet>
     </sensor>
 
     </sensors>

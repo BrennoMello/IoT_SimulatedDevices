@@ -1,3 +1,5 @@
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
@@ -14,6 +16,9 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.json.JSONObject;
+import weka.core.Attribute;
+import weka.core.Instances;
+import weka.core.Instance;
 
 public class MQTTOperations implements MqttCallback {
 
@@ -302,12 +307,52 @@ public class MQTTOperations implements MqttCallback {
             
            return result;            
         }
+         
+        private Instances parserARFF(String file){
+            Instances instances = null;
+            try{
+            // Read the instances from a file.
+            FileReader reader = new FileReader(file);
+            instances = new Instances(reader);
+            // Get the relation name.
+            System.out.println(instances.relationName());
+            // Get the number of attributes.
+            System.out.println(instances.numAttributes()+" attributes");
+            // Show the attributes.
+            for(int i=0;i<instances.numAttributes();i++){
                 
-        private double[] simulatingConceptDrift(int amount){
+                String name = instances.attribute(i).name();
+                int type = instances.attribute(i).type();
+                String typeName = "";
+                switch(type){
+                    case Attribute.NUMERIC: typeName = "Numeric"; break;
+                    case Attribute.NOMINAL: typeName = "Nominal"; break;
+                    case Attribute.STRING: typeName = "String"; break;
+                }
+                System.out.println(name+" type "+typeName);
+            }
+            
+            // Show the data.
+            for(int i=0;i<instances.numInstances();i++){
+                Instance instance = instances.instance(i); // ugh
+                System.out.println((i+1)+": "+instance+ " missing? "+instance.hasMissingValue());
+            }
+            }catch(IOException e){
+                System.out.println("Error paser arff archive");
+            }
+            
+            return instances;
+        }
+        
+        private double[] simulatingConceptDrift(int amount, VirtualSensor virtualSensor){
+            
+            parserARFF(virtualSensor.getFileSytheticDataSet());
+            
             double result[] = new double[amount];
             
             for (int i = 0; i < amount; i++) {
-                 result[i] =  this.stream.nextInstance().getData().classValue();
+                //result[i] =  this.stream.nextInstance().getData().value(i);
+                
             }
             
             return result;
@@ -338,7 +383,7 @@ public class MQTTOperations implements MqttCallback {
 		int collect = confJSON.getInt("collect");
 		
                 int amount = publish/collect;
-                double[] values = simulatingConceptDrift(amount);               
+                double[] values = simulatingConceptDrift(amount, sensor);               
                 
                 while (publish > 0) {
 			//int i = randomGenerator.nextInt(sensor.getValues().size());
