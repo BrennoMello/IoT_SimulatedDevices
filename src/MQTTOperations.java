@@ -307,7 +307,7 @@ public class MQTTOperations implements MqttCallback {
             
            return result;            
         }
-         
+        
         private Instances parserARFF(String file){
             Instances instances = null;
             try{
@@ -344,9 +344,11 @@ public class MQTTOperations implements MqttCallback {
             return instances;
         }
         
-        private double[] simulatingConceptDrift(int amount, VirtualSensor virtualSensor){
+
+         
+        private double[] nextDataSimulatingConceptDrift(int amount, VirtualSensor virtualSensor){
             
-            parserARFF(virtualSensor.getFileSytheticDataSet());
+            Instances instances = parserARFF(virtualSensor.getFileSytheticDataSet());
             
             double result[] = new double[amount];
             
@@ -383,7 +385,7 @@ public class MQTTOperations implements MqttCallback {
 		int collect = confJSON.getInt("collect");
 		
                 int amount = publish/collect;
-                double[] values = simulatingConceptDrift(amount, sensor);               
+                double[] values = sensor.nextDataSimulatingConceptDrift(amount);               
                 
                 while (publish > 0) {
 			//int i = randomGenerator.nextInt(sensor.getValues().size());
